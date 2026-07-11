@@ -1,6 +1,8 @@
 # AI Email Router with Amazon Bedrock Flows
 
 **By Biswajit Boro** · July 2026
+🎥 [Watch the full walkthrough](YOUR_YOUTUBE_LINK)
+
 
 An email automation project built on Amazon Bedrock Flows. The flow reads an
 incoming customer email, classifies its intent using a Bedrock prompt, and
@@ -21,7 +23,7 @@ classification, producing a ready-to-send reply.
    content (sexual content, violence, hate speech, and similar categories)
    before it reaches the model.
 
-![Email Router Flow](screenshots/Email%20Router%20Flow.png)
+![Email Router Flow](screenshots/Email%20Router%20Flow.jpg)
 
 ## Architecture
 
@@ -95,9 +97,9 @@ viewer to inspect exactly what each node received and produced.
 
 Traces from both branches, output and routing:
 
-![Flow Builder - Complaint Response Output](screenshots/FLow%20Builder%20-%20Complaint%20Response%20Output.jpg)
+![Flow Builder - Complaint Response Output](screenshots/Flow%20Builder%20-%20Complaint%20Response%20Output..jpg)
 ![Flow Builder - Complaint Response Trace](screenshots/Flow%20Builder%20-%20Complaint%20Response%20Trace.jpg)
-![Flow Builder - General Response Output](screenshots/Flow%20Builder%20-%20General%20Response%20Output.jpg)
+![Flow Builder - General Response Output](screenshots/Flow%20Builder%20-%20General%20Response%20Output..jpg)
 ![Flow Builder - General Response Trace](screenshots/Flow%20Builder%20-%20General%20Response%20Trace.jpg)
 
 **6. Adding guardrails**
@@ -163,7 +165,7 @@ node.
 
 The project itself took about 4 hours in total. and exta 2 hours approx to strategically document it and uplaod on relevant website like github, linkedin.
 It felt pretty overwhelming
-at first — seeing the AWS interface for the first time, I had to check around
+at first seeing the AWS interface for the first time, I had to check around
 a fair bit just to understand what I was looking at. The classifier ended up
 being the most time-consuming part: the initial prompt looked correct and
 matched the instructions I'd written, but the routing still didn't behave the
@@ -173,3 +175,5 @@ actually showing) revealed that both the model's output format and the
 condition logic were the real problem. Once the prompt was rewritten to
 constrain the output strictly to a single word, the flow worked correctly
 across every email type I tested.
+
+## THANK YOU FOR READING MY JOURNAL AND THIS INCREDIBLE SHORT JOURNEY.
