@@ -1,7 +1,7 @@
 # AI Email Router with Amazon Bedrock Flows
 
 **By Biswajit Boro** · July 2026
-🎥 [Watch the full walkthrough]("https://youtu.be/rXFf-BYXUU0?si=nHuVCxI8k-vx4FFz")
+🎥 [Watch the full walkthrough](https://youtu.be/rXFf-BYXUU0?si=nHuVCxI8k-vx4FFz)
 
 
 An email automation project built on Amazon Bedrock Flows. The flow reads an
