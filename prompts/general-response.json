@@ -1,0 +1,35 @@
+{
+    "name": "general-response",
+    "description": "Generates professional responses to general customer emails.",
+    "defaultVariant": "variantOne",
+    "variants": [
+        {
+            "name": "variantOne",
+            "templateType": "TEXT",
+            "templateConfiguration": {
+                "text": {
+                    "text": "You are a helpful customer service agent. Read the following customer email and write a brief, professional response (3-4 sentences).\n\nCustomer email: {{email}}\n",
+                    "inputVariables": [
+                        {
+                            "name": "email"
+                        }
+                    ]
+                }
+            },
+            "modelId": "arn:aws:bedrock:us-east-1:638647552002:inference-profile/global.amazon.nova-2-lite-v1:0",
+            "inferenceConfiguration": {
+                "text": {
+                    "temperature": 0.0,
+                    "topP": 0.8999999761581421,
+                    "maxTokens": 512,
+                    "stopSequences": []
+                }
+            }
+        }
+    ],
+    "id": "RI46DH813D",
+    "arn": "arn:aws:bedrock:us-east-1:638647552002:prompt/RI46DH813D",
+    "version": "DRAFT",
+    "createdAt": "2026-07-09T21:20:25.438389+00:00",
+    "updatedAt": "2026-07-10T16:20:57.162048+00:00"
+}

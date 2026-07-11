@@ -1,0 +1,49 @@
+{
+    "name": "email-classifier",
+    "description": "Classifies customer emails as complaint, question, or refund.",
+    "defaultVariant": "variantOne",
+    "variants": [
+        {
+            "name": "variantOne",
+            "templateType": "CHAT",
+            "templateConfiguration": {
+                "chat": {
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": [
+                                {
+                                    "text": "You are an email classifier. Read the following customer email and classify it as exactly one of: complaint, question, or refund. Respond with only the classification label in lowercase, nothing else.\n\nCustomer email: {{email}}\nYou are an email classifier. Classify the following customer email as exactly one of these three words: complaint, question, refund.\n\nOutput ONLY that single word. No markdown, no asterisks, no punctuation, no explanation, no extra text of any kind.\n\nCustomer email: {{email}}"
+                                }
+                            ]
+                        }
+                    ],
+                    "system": [
+                        {
+                            "text": "You are an email classifier. Classify the following customer email as exactly one of these three words: complaint, question, refund.\n\nOutput ONLY that single word. No markdown, no asterisks, no punctuation, no explanation, no extra text of any kind.\n\nCustomer email: {{email}}\n"
+                        }
+                    ],
+                    "inputVariables": [
+                        {
+                            "name": "email"
+                        }
+                    ]
+                }
+            },
+            "modelId": "arn:aws:bedrock:us-east-1:638647552002:inference-profile/global.amazon.nova-2-lite-v1:0",
+            "inferenceConfiguration": {
+                "text": {
+                    "temperature": 0.0,
+                    "topP": 1.0,
+                    "maxTokens": 512,
+                    "stopSequences": []
+                }
+            }
+        }
+    ],
+    "id": "MTQ7YMWOZU",
+    "arn": "arn:aws:bedrock:us-east-1:638647552002:prompt/MTQ7YMWOZU",
+    "version": "DRAFT",
+    "createdAt": "2026-07-09T18:52:33.110620+00:00",
+    "updatedAt": "2026-07-10T16:20:31.876070+00:00"
+}

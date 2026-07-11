@@ -1,0 +1,259 @@
+{
+    "name": "email-router",
+    "description": "Routes customer emails to the appropriate response prompt based on classification",
+    "executionRoleArn": "arn:aws:iam::638647552002:role/service-role/AmazonBedrockExecutionRoleForFlows_PXF9105A0ER",
+    "id": "UENXJOLUA6",
+    "arn": "arn:aws:bedrock:us-east-1:638647552002:flow/UENXJOLUA6",
+    "status": "Prepared",
+    "createdAt": "2026-07-09T21:32:51.880867+00:00",
+    "updatedAt": "2026-07-10T16:29:00.856000+00:00",
+    "version": "DRAFT",
+    "definition": {
+        "nodes": [
+            {
+                "name": "FlowInputNode",
+                "type": "Input",
+                "configuration": {
+                    "input": {}
+                },
+                "outputs": [
+                    {
+                        "name": "document",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "name": "EmailClassifier",
+                "type": "Prompt",
+                "configuration": {
+                    "prompt": {
+                        "sourceConfiguration": {
+                            "resource": {
+                                "promptArn": "arn:aws:bedrock:us-east-1:638647552002:prompt/MTQ7YMWOZU"
+                            }
+                        },
+                        "guardrailConfiguration": {
+                            "guardrailIdentifier": "arn:aws:bedrock:us-east-1:638647552002:guardrail/v35z359rm6e2",
+                            "guardrailVersion": "1"
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "email",
+                        "type": "String",
+                        "expression": "$.data"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "modelCompletion",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "name": "FlowOutputNode",
+                "type": "Output",
+                "configuration": {
+                    "output": {}
+                },
+                "inputs": [
+                    {
+                        "name": "document",
+                        "type": "String",
+                        "expression": "$.data"
+                    }
+                ]
+            },
+            {
+                "name": "ComplaintChecker",
+                "type": "Condition",
+                "configuration": {
+                    "condition": {
+                        "conditions": [
+                            {
+                                "name": "is_complaint",
+                                "expression": "conditionInput == \"complaint\""
+                            },
+                            {
+                                "name": "default"
+                            }
+                        ]
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "conditionInput",
+                        "type": "String",
+                        "expression": "$.data"
+                    }
+                ]
+            },
+            {
+                "name": "ComplaintResponsePrompt",
+                "type": "Prompt",
+                "configuration": {
+                    "prompt": {
+                        "sourceConfiguration": {
+                            "resource": {
+                                "promptArn": "arn:aws:bedrock:us-east-1:638647552002:prompt/EQS8X4P120:1"
+                            }
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "email",
+                        "type": "String",
+                        "expression": "$.data"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "modelCompletion",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "name": "GeneralResponsePrompt",
+                "type": "Prompt",
+                "configuration": {
+                    "prompt": {
+                        "sourceConfiguration": {
+                            "resource": {
+                                "promptArn": "arn:aws:bedrock:us-east-1:638647552002:prompt/RI46DH813D:1"
+                            }
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "email",
+                        "type": "String",
+                        "expression": "$.data"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "modelCompletion",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "name": "GeneralResponseOutput",
+                "type": "Output",
+                "configuration": {
+                    "output": {}
+                },
+                "inputs": [
+                    {
+                        "name": "document",
+                        "type": "String",
+                        "expression": "$.data"
+                    }
+                ]
+            }
+        ],
+        "connections": [
+            {
+                "type": "Data",
+                "name": "FlowInputNodeFlowInputNode0ToEmailClassifierPromptsNode0",
+                "source": "FlowInputNode",
+                "target": "EmailClassifier",
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "document",
+                        "targetInput": "email"
+                    }
+                }
+            },
+            {
+                "type": "Data",
+                "name": "ComplaintResponsePromptPromptsNode0ToFlowOutputNodeFlowOutputNode0",
+                "source": "ComplaintResponsePrompt",
+                "target": "FlowOutputNode",
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "modelCompletion",
+                        "targetInput": "document"
+                    }
+                }
+            },
+            {
+                "type": "Data",
+                "name": "GeneralResponsePromptPromptsNode0ToGeneralResponseOutputFlowOutputNode0",
+                "source": "GeneralResponsePrompt",
+                "target": "GeneralResponseOutput",
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "modelCompletion",
+                        "targetInput": "document"
+                    }
+                }
+            },
+            {
+                "type": "Conditional",
+                "name": "ComplaintCheckerConditionNode0ToComplaintResponsePromptPromptsNode0",
+                "source": "ComplaintChecker",
+                "target": "ComplaintResponsePrompt",
+                "configuration": {
+                    "conditional": {
+                        "condition": "is_complaint"
+                    }
+                }
+            },
+            {
+                "type": "Conditional",
+                "name": "ComplaintCheckerConditionNode0ToGeneralResponsePromptPromptsNode0",
+                "source": "ComplaintChecker",
+                "target": "GeneralResponsePrompt",
+                "configuration": {
+                    "conditional": {
+                        "condition": "default"
+                    }
+                }
+            },
+            {
+                "type": "Data",
+                "name": "FlowInputNodeFlowInputNode0ToGeneralResponsePromptPromptsNode0",
+                "source": "FlowInputNode",
+                "target": "GeneralResponsePrompt",
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "document",
+                        "targetInput": "email"
+                    }
+                }
+            },
+            {
+                "type": "Data",
+                "name": "FlowInputNodeFlowInputNode0ToComplaintResponsePromptPromptsNode0",
+                "source": "FlowInputNode",
+                "target": "ComplaintResponsePrompt",
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "document",
+                        "targetInput": "email"
+                    }
+                }
+            },
+            {
+                "type": "Data",
+                "name": "EmailClassifierPromptsNode0ToComplaintCheckerConditionNode0",
+                "source": "EmailClassifier",
+                "target": "ComplaintChecker",
+                "configuration": {
+                    "data": {
+                        "sourceOutput": "modelCompletion",
+                        "targetInput": "conditionInput"
+                    }
+                }
+            }
+        ]
+    },
+    "validations": []
+}

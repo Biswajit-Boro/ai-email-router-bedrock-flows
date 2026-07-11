@@ -1,0 +1,35 @@
+{
+    "name": "complaint-response",
+    "description": "Generates empathetic responses to customer complaints.",
+    "defaultVariant": "variantOne",
+    "variants": [
+        {
+            "name": "variantOne",
+            "templateType": "TEXT",
+            "templateConfiguration": {
+                "text": {
+                    "text": "You are a customer service agent. Read the following customer complaint and write a brief, empathetic response (3-4 sentences) that acknowledges the issue and offers a resolution.\n\nCustomer email: {{email}}\n",
+                    "inputVariables": [
+                        {
+                            "name": "email"
+                        }
+                    ]
+                }
+            },
+            "modelId": "arn:aws:bedrock:us-east-1:638647552002:inference-profile/global.amazon.nova-2-lite-v1:0",
+            "inferenceConfiguration": {
+                "text": {
+                    "temperature": 0.0,
+                    "topP": 0.8999999761581421,
+                    "maxTokens": 512,
+                    "stopSequences": []
+                }
+            }
+        }
+    ],
+    "id": "EQS8X4P120",
+    "arn": "arn:aws:bedrock:us-east-1:638647552002:prompt/EQS8X4P120",
+    "version": "DRAFT",
+    "createdAt": "2026-07-09T21:17:35.378127+00:00",
+    "updatedAt": "2026-07-10T16:21:12.714323+00:00"
+}
