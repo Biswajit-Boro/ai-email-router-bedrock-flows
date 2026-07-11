@@ -118,21 +118,21 @@ The first version of this flow *looked* like it was routing correctly in
 testing, but it wasn't. Two separate bugs were stacked on top of each other:
 
 - **The condition expression was basically always true.** It read
-  `(conditionInput == "complaint") or (conditionInput != "")` — meaning any
+  `(conditionInput == "complaint") or (conditionInput != "") which means any
   non-empty classifier output satisfied the "is complaint" branch, so every
   email routed to the complaint response regardless of its actual
   classification. Fixed by simplifying the condition to just
   `conditionInput == "complaint"`.
-- **The classifier wasn't actually returning a clean label.** Even with
+- **The classifier was not returning a clean label.** Even with
   explicit instructions to respond with "only the classification label,
   nothing else," the model kept adding markdown formatting and a full
   explanation alongside the label (e.g. `**complaint**\n\nThe email
   expresses...`). Since the condition was doing an exact string match, that
-  extra text meant it never matched `"complaint"` cleanly — a second,
+  extra text meant it never matched `"complaint"` cleanly. A second,
   independent reason the routing was broken underneath the first bug.
 
 Both bugs were only visible by pulling each node's individual input/output
-trace during a test run, rather than just looking at the final reply — the
+trace during a test run, rather than just looking at the final reply, the
 final output could look perfectly fine while the actual routing logic
 underneath it was completely broken. I used Claude to help interpret the
 trace output and pinpoint exactly where the string match was failing, then
