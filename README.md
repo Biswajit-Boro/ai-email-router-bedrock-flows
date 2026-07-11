@@ -55,9 +55,16 @@ harder than expected (see the debugging section below).
 
 Here's the classifier being tested against each of the three categories:
 
+Email Cassifier -: 
+
 ![Prompt Builder - Email Classifier - Complaint](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Complaint.jpg)
 ![Prompt Builder - Email Classifier - Question](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Question.jpg)
 ![Prompt Builder - Email Classifier - Refund](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Refund.jpg)
+
+Other two categories: -
+
+![Prompt Builder - Complaint Response](screenshots/Prompt%20Builder%20-%20Complaint%20Response.jpg)
+![Prompt Builder - General Response](screenshots/Prompt%20Builder%20-%20General%20Response.jpg)
 
 **3. Building the response prompt library**
 Created two separate response-generation prompts: one for complaints
@@ -66,8 +73,11 @@ general emails (brief, professional, neutral tone). Different email types
 need differently shaped replies, so keeping them as separate prompts made
 routing straightforward.
 
-![Prompt Builder - Complaint Response](screenshots/Prompt%20Builder%20-%20Complaint%20Response.jpg)
-![Prompt Builder - General Response](screenshots/Prompt%20Builder%20-%20General%20Response.jpg)
+General Responses:-
+![Flow Builder - General Response Output](screenshots/Flow%20Builder%20-%20General%20Response%20Output..jpg)
+
+Complaint Responses: -
+![Flow Builder - Complaint Response Trace](screenshots/Flow%20Builder%20-%20Complaint%20Response%20Trace.jpg)
 
 **4. Building the flow**
 Wired everything together in Bedrock Flow builder: input node → classifier
@@ -76,6 +86,8 @@ condition node reads the classifier's `modelCompletion` output and checks it
 against `"complaint"`; anything that doesn't match falls to the default
 (general) branch.
 
+![Email Router Flow](screenshots/Email%20Router%20Flow.jpg)
+
 **5. Testing and debugging**
 Tested the flow with several email types — complaints, questions, refund
 requests, and a deliberately ambiguous email — using Bedrock's built-in trace
@@ -83,9 +95,9 @@ viewer to inspect exactly what each node received and produced.
 
 Traces from both branches, output and routing:
 
-![Flow Builder - Complaint Response Output](screenshots/FLow%20Builder%20-%20Complaint%20Response%20Output..jpg)
+![Flow Builder - Complaint Response Output](screenshots/FLow%20Builder%20-%20Complaint%20Response%20Output.jpg)
 ![Flow Builder - Complaint Response Trace](screenshots/Flow%20Builder%20-%20Complaint%20Response%20Trace.jpg)
-![Flow Builder - General Response Output](screenshots/Flow%20Builder%20-%20General%20Response%20Output..jpg)
+![Flow Builder - General Response Output](screenshots/Flow%20Builder%20-%20General%20Response%20Output.jpg)
 ![Flow Builder - General Response Trace](screenshots/Flow%20Builder%20-%20General%20Response%20Trace.jpg)
 
 **6. Adding guardrails**
