@@ -56,8 +56,8 @@ harder than expected (see the debugging section below).
 Here's the classifier being tested against each of the three categories:
 
 ![Prompt Builder - Email Classifier - Complaint](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Complaint.jpg)
-![Prompt Builder - Email Classifier - Question](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Question.png)
-![Prompt Builder - Email Classifier - Refund](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Refund.png)
+![Prompt Builder - Email Classifier - Question](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Question.jpg)
+![Prompt Builder - Email Classifier - Refund](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Refund.jpg)
 
 **3. Building the response prompt library**
 Created two separate response-generation prompts: one for complaints
@@ -66,8 +66,8 @@ general emails (brief, professional, neutral tone). Different email types
 need differently shaped replies, so keeping them as separate prompts made
 routing straightforward.
 
-![Prompt Builder - Complaint Response](screenshots/Prompt%20Builder%20-%20Complaint%20Response.png)
-![Prompt Builder - General Response](screenshots/Prompt%20Builder%20-%20General%20Response.png)
+![Prompt Builder - Complaint Response](screenshots/Prompt%20Builder%20-%20Complaint%20Response.jpg)
+![Prompt Builder - General Response](screenshots/Prompt%20Builder%20-%20General%20Response.jpg)
 
 **4. Building the flow**
 Wired everything together in Bedrock Flow builder: input node → classifier
@@ -83,10 +83,10 @@ viewer to inspect exactly what each node received and produced.
 
 Traces from both branches, output and routing:
 
-![Flow Builder - Complaint Response Output](screenshots/FLow%20Builder%20-%20Complaint%20Response%20Output..png)
-![Flow Builder - Complaint Response Trace](screenshots/Flow%20Builder%20-%20Complaint%20Response%20Trace.png)
-![Flow Builder - General Response Output](screenshots/Flow%20Builder%20-%20General%20Response%20Output..png)
-![Flow Builder - General Response Trace](screenshots/Flow%20Builder%20-%20General%20Response%20Trace.png)
+![Flow Builder - Complaint Response Output](screenshots/FLow%20Builder%20-%20Complaint%20Response%20Output..jpg)
+![Flow Builder - Complaint Response Trace](screenshots/Flow%20Builder%20-%20Complaint%20Response%20Trace.jpg)
+![Flow Builder - General Response Output](screenshots/Flow%20Builder%20-%20General%20Response%20Output..jpg)
+![Flow Builder - General Response Trace](screenshots/Flow%20Builder%20-%20General%20Response%20Trace.jpg)
 
 **6. Adding guardrails**
 Attached a Bedrock Guardrail to the classifier node with content filters
@@ -95,8 +95,8 @@ Verified it by sending both a normal email (got a proper reply) and a
 harmful-content email (the guardrail blocked it before either response
 prompt could run).
 
-![Flow Builder - GuardRail - one](screenshots/Flow%20Builder%20-%20GuardRail%20-%20one.png)
-![Flow Builder - GuardRail - two](screenshots/Flow%20Builder%20-%20GuardRail%20-%20two.png)
+![Flow Builder - GuardRail - one](screenshots/Flow%20Builder%20-%20GuardRail%20-%20one.jpg)
+![Flow Builder - GuardRail - two](screenshots/Flow%20Builder%20-%20GuardRail%20-%20two.jpg)
 
 ## What actually went wrong (and how it got fixed)
 
@@ -149,7 +149,8 @@ node.
 
 ## Time and effort
 
-The project itself took about 4 hours in total. It felt pretty overwhelming
+The project itself took about 4 hours in total. and exta 2 hours approx to strategically document it and uplaod on relevant website like github, linkedin.
+It felt pretty overwhelming
 at first — seeing the AWS interface for the first time, I had to check around
 a fair bit just to understand what I was looking at. The classifier ended up
 being the most time-consuming part: the initial prompt looked correct and
