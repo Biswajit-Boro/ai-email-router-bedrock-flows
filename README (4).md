@@ -55,7 +55,7 @@ harder than expected (see the debugging section below).
 
 Here's the classifier being tested against each of the three categories:
 
-![Prompt Builder - Email Classifier - Complaint](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Complaint.png)
+![Prompt Builder - Email Classifier - Complaint](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Complaint.jpg)
 ![Prompt Builder - Email Classifier - Question](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Question.png)
 ![Prompt Builder - Email Classifier - Refund](screenshots/Prompt%20Builder%20-%20Email%20Classifier%20-%20Refund.png)
 
